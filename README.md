@@ -44,7 +44,7 @@ To get a local copy up and running, follow these simple steps.
 1. **Clone the Repository**
 ```bash
 git clone https://github.com/owaseraph/Django_Coderun_2025_Easy.git
-cd treasure-hunt
+cd Django_Coderun_2025_Easy
 ```
 
 2. **Create and activate a virtual environment**
