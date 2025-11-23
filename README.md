@@ -43,7 +43,7 @@ To get a local copy up and running, follow these simple steps.
 ### Installation
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/treasure-hunt.git
+git clone https://github.com/owaseraph/Django_Coderun_2025_Easy.git
 cd treasure-hunt
 ```
 
