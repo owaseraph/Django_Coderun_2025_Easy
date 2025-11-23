@@ -41,3 +41,8 @@ To get a local copy up and running, follow these simple steps.
 * Pip (Python package manager)
 
 ### Installation
+1. **Clone the Repository**
+```bash
+git clone https://github.com/yourusername/treasure-hunt.git
+cd treasure-hunt
+```
