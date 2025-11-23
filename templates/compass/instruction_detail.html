@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}Instruction #{{ instruction.id }} Details{% endblock %}
+
+{% block content %}
+<div class="instruction-detail-container">
+    <h1>Instruction #{{ instruction.id }} Details</h1>
+    
+    <div class="instruction-details">
+        <div class="detail-row">
+            <span class="detail-label">Direction:</span>
+            <div class="direction-visual">
+                <span class="direction-text">{{ instruction.get_direction_display }}</span>
+                <div class="direction-svg">
+                    {% if instruction.direction == 'N' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="30,10 40,40 30,35 20,40" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="30" y="55" font-size="12" text-anchor="middle" fill="#2c3e50">N</text>
+                        </svg>
+                    {% elif instruction.direction == 'S' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="30,50 40,20 30,25 20,20" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="30" y="10" font-size="12" text-anchor="middle" fill="#2c3e50">S</text>
+                        </svg>
+                    {% elif instruction.direction == 'E' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="50,30 20,20 25,30 20,40" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="10" y="35" font-size="12" text-anchor="middle" fill="#2c3e50">E</text>
+                        </svg>
+                    {% elif instruction.direction == 'W' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,30 40,20 35,30 40,40" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="50" y="35" font-size="12" text-anchor="middle" fill="#2c3e50">W</text>
+                        </svg>
+                    {% elif instruction.direction == 'NE' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="45,15 45,35 40,30 25,45 20,40 35,25 30,20" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="50" y="12" font-size="12" text-anchor="middle" fill="#2c3e50">NE</text>
+                        </svg>
+                    {% elif instruction.direction == 'NW' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="15,15 15,35 20,30 35,45 40,40 25,25 30,20" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="10" y="12" font-size="12" text-anchor="middle" fill="#2c3e50">NW</text>
+                        </svg>
+                    {% elif instruction.direction == 'SE' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="45,45 45,25 40,30 25,15 20,20 35,35 30,40" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="50" y="55" font-size="12" text-anchor="middle" fill="#2c3e50">SE</text>
+                        </svg>
+                    {% elif instruction.direction == 'SW' %}
+                        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="15,45 15,25 20,30 35,15 40,20 25,35 30,40" fill="#2c3e50" stroke="#34495e" stroke-width="2"/>
+                            <text x="10" y="55" font-size="12" text-anchor="middle" fill="#2c3e50">SW</text>
+                        </svg>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">{{ instruction.distance }} nautical miles</span>
+        </div>
+        
+        <div class="detail-row">
+            <span class="detail-label">Description:</span>
+            <span class="detail-value">{{ instruction.description }}</span>
+        </div>
+        
+        <div class="detail-row">
+            <span class="detail-label">Previous Instruction:</span>
+            <span class="detail-value">
+                {% if instruction.previous_instruction %}
+                    <a href="{% url 'instruction_detail' instruction.previous_instruction.id %}">
+                        Instruction #{{ instruction.previous_instruction.id }} 
+                        ({{ instruction.previous_instruction.distance }} miles {{ instruction.previous_instruction.get_direction_display }})
+                    </a>
+                {% else %}
+                    None (Starting point)
+                {% endif %}
+            </span>
+        </div>
+        
+        <div class="detail-row">
+            <span class="detail-label">Risk Level:</span>
+            <span class="detail-value">{{ instruction.risk_level }}/100</span>
+            <div class="risk-bar">
+                <div class="risk-fill" style="width: {{ instruction.risk_level }}%; background-color: {% if instruction.risk_level < 33 %}#27ae60{% elif instruction.risk_level < 66 %}#f39c12{% else %}#e74c3c{% endif %};"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="summary-section">
+        <button id="summaryBtn" class="btn-summary">Show Summary</button>
+        
+        <div id="summaryDetails" class="summary-details" style="display: none;">
+            <h2>Route Summary</h2>
+            <p class="summary-note">Starting from this instruction (Instruction #{{ instruction.id }})</p>
+            
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Distance:</span>
+                    <span class="stat-value">{{ summary.total_distance }} nautical miles</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-label">Average Risk Level:</span>
+                    <span class="stat-value">{{ summary.average_risk }}/100</span>
+                </div>
+                
+                <div class="stat-item">
+                    <span class="stat-label">Instructions in Route:</span>
+                    <span class="stat-value">{{ summary.instruction_count }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="actions">
+        <a href="{% url 'compass' %}" class="btn-back">Back to Compass</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('summaryBtn').addEventListener('click', function() {
+        const summaryDetails = document.getElementById('summaryDetails');
+        if (summaryDetails.style.display === 'none') {
+            summaryDetails.style.display = 'block';
+            this.textContent = 'Hide Summary';
+        } else {
+            summaryDetails.style.display = 'none';
+            this.textContent = 'Show Summary';
+        }
+    });
+</script>
+{% endblock %}
