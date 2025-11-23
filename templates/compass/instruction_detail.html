@@ -1,10 +1,21 @@
-{% extends "layout.html" %}
+{% load static %}
+<DOCTYPE html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Instruction # {{ instruction.id }} Details
+    </title>
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+    <script src="{% static 'js/details.js' %}" defer></script>
+</head>
 
-{% block title %}Instruction #{{ instruction.id }} Details{% endblock %}
+<body>
+    <main>
 
 {% block content %}
 <div class="instruction-detail-container">
-    <h1>Instruction #{{ instruction.id }} Details</h1>
+    <h1>Instruction # {{ instruction.id }} Details</h1>
     
     <div class="instruction-details">
         <div class="detail-row">
@@ -120,17 +131,7 @@
         <a href="{% url 'compass' %}" class="btn-back">Back to Compass</a>
     </div>
 </div>
-
-<script>
-    document.getElementById('summaryBtn').addEventListener('click', function() {
-        const summaryDetails = document.getElementById('summaryDetails');
-        if (summaryDetails.style.display === 'none') {
-            summaryDetails.style.display = 'block';
-            this.textContent = 'Hide Summary';
-        } else {
-            summaryDetails.style.display = 'none';
-            this.textContent = 'Show Summary';
-        }
-    });
-</script>
+    </main>
+</body>
 {% endblock %}
+</html>

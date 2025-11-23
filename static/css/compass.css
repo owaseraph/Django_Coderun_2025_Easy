@@ -1,0 +1,192 @@
+/* pirate font from google*/
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=Cinzel:wght@400;700&display=swap');
+
+:root {
+    --parchment: #f4e4bc;
+    --parchment-dark: #d6c6a0;
+    --wood-dark: #3e2723;
+    --wood-light: #5d4037;
+    --ink: #2c1e15;
+    --gold: #ffd700;
+    --danger: #8b0000;
+}
+
+body {
+    background-image: url('background.jpg');
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    min-height: 100vh;;
+}
+
+.compass-container {
+    background-color: var(--parchment);
+    background-image: repeating-linear-gradient(var(--parchment) 0, var(--parchment) 24px, #e8dcb5 25px);
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+
+    border: 10px solid var(--wood-dark);
+    border-radius: 5px;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    color: var(--ink);
+    position: relative;
+    
+    transform-origin: top center;
+    animation: unroll 2s cubic-bezier(0.25,1,0.5,1) forwards;
+}
+
+
+h1{
+    font-family: 'Pirata One', cursive;
+    text-align: center;
+    color: var(--wood-dark);
+    border-bottom: 3px solid var(--wood-dark);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+    font-size: 3.5rem;
+}
+
+h1 img.compass-icon{
+   width: 50px;
+   vertical-align: middle;
+   margin-right: 15px;
+
+   animation: compassWobble 4s ease-in-out infinite;
+}
+
+h2 {
+    font-family: 'Pirata One', cursive;
+    text-align: center;
+    color: var(--wood-dark);
+    margin-bottom: 20px;
+}
+
+
+.form-section {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed var(--wood-light);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+input[type="text"], 
+input[type="number"], 
+select, 
+textarea {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--wood-light);
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--wood-dark);
+    box-sizing: border-box; 
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    background: rgba(255,255,255,0.4);
+    border-bottom: 2px solid var(--danger);
+    transform: scale(1.01); /* Slight pop */
+}
+
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--wood-dark);
+    color: var(--parchment);
+    font-family: 'Pirata One', cursive;
+    font-size: 1.5rem;
+    border: 2px solid #1a100e;
+    cursor: pointer;
+    transition: transform 0.1s;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: var(--wood-light);
+    color: var(--gold);
+    transform: scale(1.02);
+}
+
+
+.instruction-items {
+    list-style: none;
+    padding: 0;
+}
+
+.instruction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px dashed var(--wood-light); 
+    font-size: 1.2rem;
+}
+
+.instruction-item:last-child {
+    border-bottom: none;
+}
+
+
+.btn-details {
+    background-color: var(--gold);
+    color: var(--wood-dark);
+    padding: 5px 15px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid #b8860b;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-details:hover {
+    background-color: #fffacd;
+}
+
+
+.error-messages, .field-errors {
+    color: var(--danger);
+    font-weight: bold;
+}
+
+
+/* Animations */
+
+@keyframes unroll {
+    0% { opacity: 0; transform: scaleY(0.1); }
+    100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes compassWobble {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes slideInPlank {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}

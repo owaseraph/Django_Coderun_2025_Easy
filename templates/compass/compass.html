@@ -1,10 +1,25 @@
-{% extends "layout.html" %}
+{% load static %}
+<DOCTYPE html>
+<html lang="en">
 
-{% block title %}Treasure Hunt Compass{% endblock %}
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Treasure Hunt Compass
+    </title>
+    <link rel="stylesheet" href="{% static 'css/compass.css' %}">
+    <script src="{% static 'js/compass.js' %}" defer></script>
+</head>
+
+<body>
+    <main>
 {% block content %}
 <div class="compass-container">
-    <h1>Treasure Hunt Compass</h1>
+    <h1>
+        <img src="{% static 'images/compass.png' %}" alt="Compass" class="compass-icon">
+        Treasure Hunt Compass</h1>
     
     <div class="form-section">
         <h2>Add New Instruction</h2>
@@ -60,7 +75,6 @@
             <button type="submit" class="btn-submit">Add Instruction</button>
         </form>
     </div>
-    
     <div class="instructions-list">
         <h2>Existing Instructions</h2>
         {% if instructions %}
@@ -79,4 +93,7 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
+    </main>
+</body>
+{% endblock%}
+</html>
