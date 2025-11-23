@@ -46,3 +46,30 @@ To get a local copy up and running, follow these simple steps.
 git clone https://github.com/yourusername/treasure-hunt.git
 cd treasure-hunt
 ```
+
+2. **Create and activate a virtual environment**
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. **Install requirements**
+
+
+4. **Apply Database Migrations**
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+5. **Run the Server**
+```bash
+python manage.py runserver
+```
+6. **Set Sail**
+Open your browser and navigate to: ```http://127.0.0.1:8000/compass/```
