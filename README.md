@@ -58,7 +58,10 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. **Install requirements**
+3. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
 
 
 4. **Apply Database Migrations**
@@ -71,5 +74,37 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-6. **Set Sail**
+6. **Set Sail!!!**
 Open your browser and navigate to: ```http://127.0.0.1:8000/compass/```
+
+
+## 📂 Project Structure
+
+```text
+django_th/
+├── compass/                # The Main App (Treasure Hunt Logic)
+│   ├── forms.py            # Input forms & validation
+│   ├── models.py           # Database models (Instructions, Risk)
+│   ├── urls.py             # App-specific URL routes
+│   └── views.py            # View logic & calculations
+├── django_th/              # Project Configuration
+│   ├── settings.py         # Global settings (Apps, Database, Static)
+│   └── urls.py             # Main project URL entry point
+├── static/                 # Static Assets (CSS, JS, Images)
+│   ├── css/                # Styles (compass.css)
+│   ├── images/             # Backgrounds & Icons
+│   └── js/                 # Animations (main.js)
+├── templates/              # HTML Templates
+│   └── compass/            # Compass & Detail pages
+├── db.sqlite3              # SQLite Database
+├── manage.py               # Django command-line utility
+└── requirements.txt        # Project dependencies
+```
+
+## 📸 Screen Grabs
+
+**The Compass Form (Parchment Style)**
+![Compass View](screenshots/compass_view.png)
+
+**Route Details & Risk Calculation**
+![Detail View](screenshots/instruction_view.png)
